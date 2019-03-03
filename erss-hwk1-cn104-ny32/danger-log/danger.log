@@ -1,0 +1,19 @@
+#Danger Log of HW1 Ride Sharing Service#
+#Date: 02/05/2019
+
+-----------------------------------------------------------------------------------------------------
+01/18 At first, we write the login and logout pages. We don't have data validation (e.g. no email check and password limitation) and password hash, which is risky because user login would be unsure. So we use the login and logout page provided by django which contains many useful login information check and password hashing function.
+
+01/19 We don't set other pages as loginRequired which is risky since user could access their page by entering the URL without login, which is not allowed.
+
+01/20 User didn't receive any messages even if they have done some operations sucessfully which is risky since user maybe login or request same ride mutiple times.
+
+01/21 We didn't set any limitation on drive registration, which is risky since one user only can have one driver information, we cannot allow one user have mutiple drive information.
+
+01/25 We didn't set limitation when driver search open request, which is risky if the maximum number passages of driver's car is 4, and the passages number of owner and sharer is larger than 4, then driver should not see this request, otherwise driver would comfirm a wrong request.
+
+01/27 We didn't add timestapm field at first, so driver maybe confirm a request that have been modified by owner already, which is risky since driver must know the request have been updated, So we add timestapm in our database, when the database is been updated, we will check the timestamp, if the timestamp is different, driver need to refresh the page to see newest request.
+
+01/31 We didn't set request time limitation when driver search for open request, which is risky since driver should not comfirm a request that have already overdue.
+
+02/04 We have trouble in changing our database to postgresql, everything is ok in sqlite. With the help of Brian and this online resource https://github.com/the-paperless-project/paperless/issues/183, we solve this problem. That's because some operations is allowed in sqlite3 but not allowed in postgresql. In this problem, the AlterField is not allowed in postgresql, thus django would interrupt this process. We need to change the migration file manually by adding a RemoveField and an AddField. The problem is solved. 

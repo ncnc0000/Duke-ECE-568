@@ -1,0 +1,34 @@
+{% extends "rideService/homeBase.html" %}
+{% block content %}
+<div class="container mt-3" style="padding-top: 5%;">
+    <div class="d-flex mb-3">
+        <div class="p-2 flex-fill bg-info" style="height: 500px">
+            <img src="../../static/css/owner.png" style="height: 180px; padding-top: 20px;" class="center">
+            <br/>
+            <h3 style="text-align: center; font-weight: bold;">Become An Owner!</h3><hr style="padding-bottom: 20px;">
+            <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'request-create'%}"> > Request A New Ride</a></h5>
+            <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'owner-all-requests'%}"> > My Rides</a></h5>  
+        </div>
+        <div class="p-5"></div>
+        <div class="p-2 flex-fill bg-warning">
+            <img src="../../static/css/sharer.png" style="height: 180px; padding-top: 20px;" class="center">
+            <br/>
+            <h3 style="text-align: center; font-weight: bold;">Become A Sharer!</h3><hr style="padding-bottom: 20px;">
+                <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'sharer-search'%}"> > Ride Search</a></h5>
+                <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'sharer-detail'%}"> > Ongoing Rides</a></h5>
+        </div>
+        <div class="p-5"></div>
+        <div class="p-2 flex-fill bg-danger">
+            <img src="../../static/css/driver.png" style="height: 180px; padding-top: 20px;" class="center">
+            <br/>
+            <h3 style="text-align: center; font-weight: bold;">Become A Driver!</h3><hr style="padding-bottom: 20px;">
+            {% if isDriver %}
+                <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'driver-profile' driverID%}"> > My Profile</a></h5>
+                <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'driver-confirmed-requests'%}"> > My Confirmed Requests</a></h5>
+                <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'driver-requests'%}"> > Find a New Request</a></h5> 
+            {% else %}
+                <h5 style="padding-bottom: 10px;"><a class="my-link" href="{% url 'driver-create'%}"> > Become A Driver</a></h5>
+            {% endif%}  
+        </div>
+</div>
+{% endblock content %}
